@@ -2,9 +2,9 @@
 
 A React + Vite SPA for HH:MM:SS time calculations.
 
-## Live Demo
+<!-- ## Live Demo
 
-https://time-calculator.vercel.app
+https://time-calculator.vercel.app -->
 
 ## Features
 
