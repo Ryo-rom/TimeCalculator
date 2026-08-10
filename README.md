@@ -10,8 +10,6 @@ https://time-calculator.vercel.app -->
 
 - Add time values
 - Subtract time values
-- Multiply time values
-- Divide time values
 
 ## Tech Stack
 
