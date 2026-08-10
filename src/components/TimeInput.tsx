@@ -11,18 +11,19 @@ export function TimeInput() {
   };
 
   const handleBlur = () => {
-    setValid(true);
     setTouched(true);
+
+    if (/^\d+:\d+:\d+$/.test(time.trim())) {
+      setValid(true);
+      setTime(time.trim());
+    } else {
+      setTime("");
+      setValid(false);
+    }
   };
 
   const timeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTime(e.target.value);
-    // if (/^\d+:\d+:\d+$/.test(e.target.value.trim())) {
-    //   setTime(e.target.value.trim());
-    // } else {
-    //   setTime("");
-    //   setValid(false);
-    // }
   };
 
   const showError = touched && !valid && time.length > 0;
