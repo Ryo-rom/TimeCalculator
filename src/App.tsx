@@ -1,19 +1,33 @@
 import "./App.css";
 import { TimeInput } from "./components/TimeInput";
 import { useState } from "react";
+type Term = { calType: string; time: string };
 
 function App() {
-  const [count, setCount] = useState(1);
-  const handleClick = () => {
-    setCount((prev) => prev + 1);
+  const [terms, setTerms] = useState<Term[]>([{ calType: "+", time: "" }]);
+
+  const handleAdd = () => {
+    setTerms((prev) => [...prev, { calType: "+", time: "" }]);
+  };
+
+  const updateTerm = (index: number, patch: Partial<Term>) => {
+    setTerms((prev) =>
+      prev.map((t, i) => (i === index ? { ...t, ...patch } : t)),
+    );
   };
 
   return (
     <>
-      {Array.from({ length: count }, (_, i) => (
-        <TimeInput key={i} />
+      {terms.map((term, i) => (
+        <TimeInput
+          key={i}
+          calType={term.calType}
+          time={term.time}
+          onCalTypeChange={(v) => updateTerm(i, { calType: v })}
+          onTimeChange={(v) => updateTerm(i, { time: v })}
+        />
       ))}
-      <button onClick={handleClick}>Add Term</button>
+      <button onClick={handleAdd}>Add Term</button>
     </>
   );
 }
